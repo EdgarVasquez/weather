@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather/constants.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:weather/city.dart';
+import 'package:weather/weather.dart';
+import 'package:weather/networking.dart';
 
 class location{
   final double Temperatura;
@@ -31,7 +32,7 @@ class _LocationScreenState extends State<LocationScreen>{
 
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(''),
+                  image: AssetImage('images/location_background.jpg'),
                   fit: BoxFit.fill,
                   colorFilter: ColorFilter.mode(Colors.white, BlendMode.dstATop),
                 ),
@@ -46,7 +47,15 @@ class _LocationScreenState extends State<LocationScreen>{
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           TextButton(
-                            onPressed: (){},
+                            onPressed: () async {
+                            weather weath = weather();
+                            network net = await weath.obtenDatos();
+                              Navigator.pushNamed(
+                            context,
+                             LocationScreen.routeName, arguments: location(net.Temperatura,net.Ciudad,net.emoji,net.emojiRecomendacion),
+
+    );
+                              },
                             child: Icon(
                               Icons.near_me,
                               size: 50.0,
@@ -55,7 +64,13 @@ class _LocationScreenState extends State<LocationScreen>{
 
                           ),
                           TextButton(
-                            onPressed: (){},
+                            onPressed: (){
+                              Navigator.pushNamed(
+                                context,
+                                CityScreen.routeName,
+
+                              );
+                            },
                             child: Icon(
                               Icons.location_city,
                               size: 50.0,

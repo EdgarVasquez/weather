@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/loading': (context) => Loading(),
         LocationScreen.routeName: (context) => LocationScreen(),
+        CityScreen.routeName: (context) => CityScreen(),
       },
       title: 'Wheather',
       home: Scaffold(

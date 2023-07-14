@@ -9,7 +9,6 @@ class Locator{
    double? Longitud;
 
    Future  GetLocation() async {
-
      Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
      Longitud = position.longitude;
      latitud = position.latitude;
